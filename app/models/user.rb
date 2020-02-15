@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :services
   has_many :categories, through: :services
 
+  def location_attributes=(location_attributes)
+    self.location = Location.create(location_attributes)
+  end
+
 end

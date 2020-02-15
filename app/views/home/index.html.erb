@@ -1,0 +1,32 @@
+
+<% if user_signed_in? %>
+
+    <% user = current_user %>
+    <h2>Welcome <%= user.username %></h2>
+    <h3><%= user.location.city + ", " + user.location.state %></h3>
+
+    <p>
+        Requested Services:
+        <% user.services.each do |service| %>
+            <% if service.ask_offer == "ask" %>
+                <li><%= link_to service.title, service_path(service) %></li>
+            <% end %>
+        <% end %>
+    </p>
+
+    <p>
+        Offered Services:
+        <% user.services.each do |service| %>
+            <% if service.ask_offer == "offer" %>
+                <li><%= link_to service.title, service_path(service) %></li>
+            <% end %>
+        <% end %>
+    </p>
+
+    <p>Place a new <%= link_to 'Service', new_service_path %></p>    
+
+    <p><%= link_to('Logout', destroy_user_session_path, method: :delete) %></p>
+<% else %>
+    <h1>Welcome to Comunitree</h1>
+    <p>Please <%= link_to('Login', new_user_session_path) %> to continue or <%= link_to('Signup', new_user_registration_path) %></p>
+<% end %>
