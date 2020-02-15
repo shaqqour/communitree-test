@@ -1,1 +1,10 @@
 <h2><%= @service.title %></h2>
+<h3><%= @service.description %></h3>
+
+<% if current_user == @service.user %>
+    <%= link_to 'Edit', edit_service_path(@service) %>
+<% else %>
+    <%= link_to 'Assign', edit_service_path(@service) %>
+<% end %><br>
+
+<%= link_to 'Home', root_path %>

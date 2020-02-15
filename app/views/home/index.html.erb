@@ -8,18 +8,7 @@
     <p>
         Requested Services:
         <% user.services.each do |service| %>
-            <% if service.ask_offer == "ask" %>
-                <li><%= link_to service.title, service_path(service) %></li>
-            <% end %>
-        <% end %>
-    </p>
-
-    <p>
-        Offered Services:
-        <% user.services.each do |service| %>
-            <% if service.ask_offer == "offer" %>
-                <li><%= link_to service.title, service_path(service) %></li>
-            <% end %>
+            <li><%= link_to service.title, service_path(service) %></li>
         <% end %>
     </p>
 

@@ -9,7 +9,18 @@ class ServicesController < ApplicationController
     end
 
     def create
-        
+        current_user.services << Service.create(service_params)
+        current_user.save
+        redirect_to root_url
+    end
+
+    def edit
+        @categories = Category.all
+    end
+
+    def update
+        @service.update(service_params)
+        redirect_to root_url
     end
 
     private
@@ -18,7 +29,7 @@ class ServicesController < ApplicationController
     end
 
     def service_params
-        params.request(:service).permit(:title, :description, :ask_offer, :user_id, :category_id)
+        params.require(:service).permit(:title, :description, :user_id, :category_id)
     end
 
 end

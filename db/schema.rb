@@ -29,8 +29,7 @@ ActiveRecord::Schema.define(version: 2020_02_14_171225) do
   create_table "services", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.string "ask_offer"
-    t.integer "ask_user_id"
+    t.integer "user_id"
     t.integer "offer_user_id"
     t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
