@@ -1,10 +1,19 @@
-<h2><%= @service.title %></h2>
-<h3><%= @service.description %></h3>
+<h2>Service Title: <%= @service.title %></h2>
+<h3>Category: <%= @service.category.name %></h3>
+<h3>Description: <%= @service.description %></h3>
 
-<% if current_user == @service.user %>
+
+<% if current_user == @service_request_user %>
     <%= link_to 'Edit', edit_service_path(@service) %>
 <% else %>
-    <%= link_to 'Assign', edit_service_path(@service) %>
-<% end %><br>
+    <p>This service was requested by <%= @service_request_user.username %>
+    <% if @service.offered_user.nil? %>
+        <%= link_to 'Assign', edit_service_path(@service) %>
+    <% elsif @service.offered_user == current_user %>
+        <%= link_to 'Unassign', edit_service_path(@service) %>
+    <% else %>
+        <%= ", and already has been assigned to a user" %>
+    <% end %>
+<% end %></p><br>
 
 <%= link_to 'Home', root_path %>

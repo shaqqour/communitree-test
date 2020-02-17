@@ -1,6 +1,9 @@
 
 <% if user_signed_in? %>
 
+    <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+    <% end %>
     <% user = current_user %>
     <h2>Welcome <%= user.username %></h2>
     <h3><%= user.location.city + ", " + user.location.state %></h3>
@@ -8,11 +11,20 @@
     <p>
         Requested Services:
         <% user.services.each do |service| %>
-            <li><%= link_to service.title, service_path(service) %></li>
+            <% @offer_user = service.offered_user %>
+            <li><%= link_to service.title, service_path(service) %>, assigned to <%= @offer_user ? @offer_user.username : "" %></li>
         <% end %>
     </p>
 
-    <p>Place a new <%= link_to 'Service', new_service_path %></p>    
+    <p>Place a new <%= link_to 'Service', new_service_path %></p>
+
+    <p>
+        Other users requested services:
+        <% @services.each do |service| %>
+            <% @offer_user = service.offered_user %>
+            <li><%= link_to service.title, service_path(service) %> by <%= service.user.username %>, assigned to <%= @offer_user ? @offer_user.username : "" %></li>
+        <% end %>
+    </p>
 
     <p><%= link_to('Logout', destroy_user_session_path, method: :delete) %></p>
 <% else %>

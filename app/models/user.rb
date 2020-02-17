@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :categories, through: :services
 
   def location_attributes=(location_attributes)
-    self.location = Location.create(location_attributes)
+    self.location = Location.find_or_create_by(location_attributes)
   end
 
 end
