@@ -26,6 +26,7 @@
         <% end %>
     </p>
 
+    <p><%= link_to('Edit my account', edit_user_registration_path) %></p>
     <p><%= link_to('Logout', destroy_user_session_path, method: :delete) %></p>
 <% else %>
     <h1>Welcome to Comunitree</h1>
