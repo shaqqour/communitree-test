@@ -45,6 +45,11 @@ class ServicesController < ApplicationController
         end
     end
 
+    def destroy
+        @service.delete
+        redirect_to root_url
+    end
+
     private
     def current_service
         @service = Service.find_by(id: params[:id]) || Service.new
