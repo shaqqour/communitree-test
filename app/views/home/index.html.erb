@@ -9,6 +9,13 @@
     <h3><%= user.location.city + ", " + user.location.state %></h3>
 
     <p>
+        Number of contribution: <%= user.number_of_helps %><br>
+        <% best_user = User.most_helpful %>
+        
+        <%= link_to 'View the best user', best_user_path %>
+    </p>
+
+    <p>
         Requested Services:
         <% user.services.each do |service| %>
             <% @offer_user = service.offered_user %>

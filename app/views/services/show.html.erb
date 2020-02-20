@@ -4,7 +4,7 @@
 
 
 <% if current_user == @service_request_user %>
-    <%= button_to 'Edit', edit_service_path(@service) %>
+    <%= link_to 'Edit', edit_service_path(@service) %>
     <%= button_to 'Take down', "/services/#{@service.id}", method: :delete %>
 <% else %>
     <p>This service was requested by <%= @service_request_user.username %>

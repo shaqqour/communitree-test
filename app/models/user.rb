@@ -14,6 +14,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  @@most_helpful_user = nil
+
   def location_attributes=(location_attributes)
     self.location = Location.find_or_create_by(location_attributes)
   end
@@ -30,6 +32,26 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def self.most_helpful
+    most_number_of_helps = 0
+    all.each do |user|
+      if user.number_of_helps > most_number_of_helps
+        most_number_of_helps = user.number_of_helps
+        @@most_helpful_user = user
+      end
+    end
+    @@most_helpful_user
+  end
+
+  def number_of_helps
+    helps = 0
+    services = Service.all
+    services.each do |service|
+      helps += 1 if service.offered_user == self
+    end
+    helps
   end
 
 end
