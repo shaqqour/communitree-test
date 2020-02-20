@@ -11,11 +11,7 @@
     </div>
 
     <div class="field">
-        <% if @category %>
-            <%= f.collection_select :category_id, @categories, :id, :name,  prompt: "Select a Category", selected: @category.id %>
-        <% else %>
-            <%= f.collection_select :category_id, @categories, :id, :name,  prompt: "Select a Category" %>
-        <% end %>
+        <%= f.collection_select(:category_id, @categories, :id, :name,  prompt: "Select a Category", selected: @category.nil? ? nil : @category.id) %>
     </div>
     
     <div class="actions">
