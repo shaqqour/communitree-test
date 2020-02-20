@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
+<h2><%= current_user.username %></h2>
+
+<p>Categories: 
+    <% @categories.each do |category| %>
+        <li>
+            <%= link_to "#{category.name}", category_path(category) %>
+            <%= link_to 'Create a service', new_category_service_path(category) %>
+            <%= link_to 'List services', category_services_path(category) %>
+        </li>
+    <% end %>
+</p>
+
+<%= link_to 'Home', root_path %>

@@ -1,0 +1,10 @@
+<h3><%= current_user.username %></h3>
+<p>
+    <%= @category.nil? ? "List all " : @category.name %>
+    Services:
+    <% @services.each do |service| %>
+        <li><%= service.title %></li>
+    <% end %>
+</p>
+
+<%= link_to 'Home', root_path %>

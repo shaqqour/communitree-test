@@ -8,6 +8,7 @@
     <h2>Welcome <%= user.username %></h2>
     <h3><%= user.location.city + ", " + user.location.state %></h3>
 
+
     <p>
         Number of contribution: <%= user.number_of_helps %><br>
         <% best_user = User.most_helpful %>
@@ -23,6 +24,10 @@
         <% end %>
     </p>
 
+    <p>
+        <%= link_to 'Category page', categories_path %>
+    </p>
+    
     <p>Place a new <%= link_to 'Service', new_service_path %></p>
 
     <p>

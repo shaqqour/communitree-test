@@ -1,12 +1,24 @@
 class ServicesController < ApplicationController
     before_action :current_service
 
+    def index
+        if params[:category_id]
+            @category = Category.find(params[:category_id])
+            @services = Service.all.select { |service| service.category == @category }
+        else
+            @services = Service.all
+        end
+    end
+
     def show
         @service_request_user = @service.user
     end
 
     def new
         @categories = Category.all
+        if params[:category_id]
+            @category = Category.find(params[:category_id])
+        end
     end
 
     def create
