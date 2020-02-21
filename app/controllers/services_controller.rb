@@ -6,7 +6,7 @@ class ServicesController < ApplicationController
             @category = Category.find(params[:category_id])
             @services = Service.all.select { |service| service.category == @category }
         else
-            @services = Service.all
+            @services = Service.all.select { |service| service.user != current_user }
         end
     end
 
@@ -31,6 +31,7 @@ class ServicesController < ApplicationController
     def edit
         if current_user == @service.user
             @categories = Category.all
+            @category = @service.category
         else
             update
         end

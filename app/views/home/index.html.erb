@@ -12,8 +12,6 @@
     <p>
         Number of contribution: <%= user.number_of_helps %><br>
         <% best_user = User.most_helpful %>
-        
-        <%= link_to 'View the best user', best_user_path %>
     </p>
 
     <p>
@@ -30,16 +28,6 @@
     
     <p>Place a new <%= link_to 'Service', new_service_path %></p>
 
-    <p>
-        Other users requested services:
-        <% @services.each do |service| %>
-            <% @offer_user = service.offered_user %>
-            <li><%= link_to service.title, service_path(service) %> by <%= service.user.nil? ? "" : service.user.username %>, assigned to <%= @offer_user.nil? ? "" : @offer_user.username %></li>
-        <% end %>
-    </p>
-
-    <p><%= link_to('Edit my account', edit_user_registration_path) %></p>
-    <p><%= link_to('Logout', destroy_user_session_path, method: :delete) %></p>
 <% else %>
     <h1>Welcome to Comunitree</h1>
     <p>Please <%= link_to('Login', new_user_session_path) %> to continue or <%= link_to('Signup', new_user_registration_path) %></p>

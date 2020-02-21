@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
     def index
-        @services = Service.all.select { |service| service.user_id != current_user.id }
+        @services = Service.all.select { |service| service.user != current_user }
     end
     
     def home
