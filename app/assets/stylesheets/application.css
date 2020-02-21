@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+nav {
+    float: left;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+body {
+    background-image: url("https://wallpaperset.com/w/full/7/5/a/545589.jpg");
+}

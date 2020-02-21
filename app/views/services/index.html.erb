@@ -4,6 +4,6 @@
     available services:</strong>
     <% @services.each do |service| %>
         <% @offer_user = service.offered_user %>
-        <li><%= link_to service.title, service_path(service) %> by <%= service.user.nil? ? "" : service.user.username %>, assigned to <%= @offer_user.nil? ? "" : @offer_user.username %></li>
+        <li><%= link_to service.title, @category.nil? ? service_path(service) : category_service_path(@category, service) %> by <%= service.user.nil? ? "" : service.user.username %>, assigned to <%= @offer_user.nil? ? "" : @offer_user.username %></li>
     <% end %>
 </p>

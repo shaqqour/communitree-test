@@ -10,11 +10,14 @@
   </head>
 
   <body>
-    <nav><%= link_to 'Home', root_path %></nav>
-    <nav><%= link_to 'Edit account', edit_user_registration_path %></nav>
-    <nav><%= link_to 'Available services', services_path %></nav>
-    <nav><%= link_to 'Logout', destroy_user_session_path, method: :delete %></nav>
-    <nav><%= link_to 'Best User', best_user_path %></nav>
+    <% if user_signed_in? %>
+      <nav><%= link_to 'Home', root_path %></nav>
+      <nav><%= link_to 'Edit account', edit_user_registration_path %></nav>
+      <nav><%= link_to 'Available services', services_path %></nav>
+      <nav><%= link_to 'Best User', best_user_path %></nav>
+      <nav><%= link_to 'Logout', destroy_user_session_path, method: :delete %></nav>
+      <br>
+    <% end %>
     <%= yield %>
   </body>
 </html>
