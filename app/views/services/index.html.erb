@@ -1,4 +1,10 @@
 <h3>You are logged in as <%= current_user.username %></h3>
+
+<%= form_tag(services_path, method: 'get') do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag("Search", name: nil) %>
+<% end %>
+
 <table style="width:100%">
 <strong><%= @category.nil? ? "All " : @category.name %> services:</strong>
     <tr>
@@ -11,7 +17,13 @@
         <tr>
             <td><%= link_to service.title, @category.nil? ? service_path(service) : category_service_path(@category, service) %></td>
             <td><%= service.user.username %></td>
-            <td><%= @offer_user.nil? ? link_to("Assign", edit_service_path(service)) : @offer_user.username %></td>
+            <% if @offer_user.nil? && service.user != current_user %>
+                <td><%= link_to("Assign", edit_service_path(service)) %></td>
+            <% elsif @offer_user.nil? %>
+                <td></td>
+            <% else %>
+                <td><%= @offer_user.username %></td>
+            <% end %>
         </tr>
     <% end %>
 </table>

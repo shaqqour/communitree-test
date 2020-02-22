@@ -1,6 +1,11 @@
 # README
 
-Steps to get the this application up and running
+README FILE
+
+Web Application PROJECT User post, assign services.
+
+OVERVIEW
+
 
 * This is a ruby on rails project. rbenv is 2.5.1
 

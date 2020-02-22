@@ -2,7 +2,9 @@ class ServicesController < ApplicationController
     before_action :current_service
 
     def index
-        if params[:category_id]
+        if params[:search]
+            @services = Service.search(params[:search])
+        elsif params[:category_id]
             @category = Category.find(params[:category_id])
             @services = Service.all.select { |service| service.category == @category }
         else
