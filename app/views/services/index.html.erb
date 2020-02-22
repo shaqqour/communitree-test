@@ -1,9 +1,17 @@
 <h3>You are logged in as <%= current_user.username %></h3>
-<p>
-    <strong><%= @category.nil? ? "All " : @category.name %>
-    available services:</strong>
+<table style="width:100%">
+<strong><%= @category.nil? ? "All " : @category.name %> services:</strong>
+    <tr>
+        <th>Service</th>
+        <th>Requested by</th>
+        <th>Assigned to</th>
+    </tr>
     <% @services.each do |service| %>
         <% @offer_user = service.offered_user %>
-        <li><%= link_to service.title, @category.nil? ? service_path(service) : category_service_path(@category, service) %> by <%= service.user.nil? ? "" : service.user.username %>, assigned to <%= @offer_user.nil? ? "" : @offer_user.username %></li>
+        <tr>
+            <td><%= link_to service.title, @category.nil? ? service_path(service) : category_service_path(@category, service) %></td>
+            <td><%= service.user.username %></td>
+            <td><%= @offer_user.nil? ? link_to("Assign", edit_service_path(service)) : @offer_user.username %></td>
+        </tr>
     <% end %>
-</p>
+</table>

@@ -22,3 +22,12 @@ nav {
 body {
     background-image: url("https://wallpaperset.com/w/full/7/5/a/545589.jpg");
 }
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+}
