@@ -24,8 +24,7 @@ class ServicesController < ApplicationController
     end
 
     def create
-        current_user.services << Service.create(service_params)
-        current_user.save
+        current_user.services.create(service_params)
         flash[:notice] = "Service was placed!"
         redirect_to root_url
     end
@@ -35,16 +34,12 @@ class ServicesController < ApplicationController
             @categories = Category.all
             @category = @service.category
         else
-            update
+            assign
         end
     end
 
-    def update
-        if current_user == @service.user
-            @service.update(service_params)
-            flash[:notice] = "Service was updated!"
-            redirect_to root_url
-        elsif @service.offered_user.nil?
+    def assign
+        if @service.offered_user.nil?
             @service.offered_user = current_user
             @service.save
             flash[:notice] = "Service was assigned to you successfuly"
@@ -56,6 +51,14 @@ class ServicesController < ApplicationController
             redirect_to root_url
         else
             flash[:notice] = "Service is assigned to another user"
+            redirect_to root_url
+        end
+    end
+
+    def update
+        if current_user == @service.user
+            @service.update(service_params)
+            flash[:notice] = "Service was updated!"
             redirect_to root_url
         end
     end

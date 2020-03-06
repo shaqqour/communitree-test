@@ -1,5 +1,6 @@
 class Service < ApplicationRecord
     belongs_to :user
+    #belongs_to :offered_user, class_name: :User, foreign_key: :offer_user_id 
     belongs_to :category
 
     def offered_user

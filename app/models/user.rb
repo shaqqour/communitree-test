@@ -7,6 +7,7 @@ class User < ApplicationRecord
   belongs_to :location
   has_many :services
   has_many :categories, through: :services
+  #has_many :services_offered, class_name: :Service, foreign_key: :offer_user_id
 
   validates :username, presence: true
   validates :username, uniqueness: true
